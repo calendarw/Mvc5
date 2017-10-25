@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Test";
+}
+
+
+<h2>Form</h2>
+@using (Html.BeginForm("Test", "Home", FormMethod.Post))
+{
+    <input type="text" name="text" />
+    <input type="submit" value="Submit" />
+}
+
+<h2>Param</h2>
+<p>@ViewBag.Param</p>
+
+<h2>Dict</h2>
+@{ 
+    System.Collections.Specialized.NameValueCollection dict = ViewBag.Dict;
+    if (dict!= null)
+    {
+        <table>
+            <tr><td>Name</td><td>Value</td></tr>
+            @{
+                foreach(string k in dict.AllKeys)
+                {
+                    <tr><td>@k</td><td>@dict[k]</td></tr>
+                }
+            }
+        </table>
+    }
+}
