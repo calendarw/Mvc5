@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using System.Linq;
 
 namespace Mvc5.Controllers
 {
@@ -18,6 +19,16 @@ namespace Mvc5.Controllers
 
         public ActionResult Test(string text = null)
         {
+            if (Request.AcceptTypes != null)
+                if (Request.AcceptTypes.Contains("application/json"))
+                {
+                    return Json(new
+                    {
+                        Param = text,
+                        Dict = Request.Params
+                    }, JsonRequestBehavior.AllowGet);
+                }
+
             ViewBag.Param = text;
             ViewBag.Dict = Request.Params;
             return View();
