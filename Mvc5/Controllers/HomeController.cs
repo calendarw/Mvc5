@@ -17,6 +17,15 @@ namespace Mvc5.Controllers
             return View();
         }
 
+        [HttpGet]
+        [ActionName("Test")]
+        public ActionResult TestIndex(string text = null)
+        {
+            return Test(text);
+        }
+    
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Test(string text = null)
         {
             if (Request.AcceptTypes != null)

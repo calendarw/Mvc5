@@ -3,10 +3,10 @@
     ViewBag.Title = "Test";
 }
 
-
 <h2>Form</h2>
 @using (Html.BeginForm("Test", "Home", FormMethod.Post))
-{
+{   
+    @Html.AntiForgeryToken()
     <input type="text" name="text" />
     <input type="submit" value="Submit" />
 }
